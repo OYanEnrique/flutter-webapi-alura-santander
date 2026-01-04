@@ -46,6 +46,15 @@ git clone https://github.com/OYanEnrique/flutter-webapi-alura-santander.git
 # Entre no diretório
 cd flutter-webapi-alura-santander
 
+# Configure a API local
+# 1. Copie o arquivo de exemplo
+cp lib/config/api_config.example.dart lib/config/api_config.dart
+
+# 2. Edite lib/config/api_config.dart e substitua YOUR_LOCAL_IP pelo IP da sua máquina
+# Para descobrir seu IP:
+#   Windows: ipconfig
+#   Linux/Mac: ifconfig ou ip addr
+
 # Instale as dependências
 flutter pub get
 
@@ -57,7 +66,7 @@ npx json-server --watch db.json --host 0.0.0.0 --port 3000
 flutter run
 ```
 
-> **Nota:** Certifique-se de atualizar o endereço IP no arquivo `lib/services/journal_service.dart` para o IP da sua máquina local.
+> **⚠️ Importante:** O arquivo `lib/config/api_config.dart` contém configurações locais e não é versionado pelo git. Certifique-se de criá-lo a partir do arquivo de exemplo.
 
 ## 📂 Estrutura do Projeto
 
