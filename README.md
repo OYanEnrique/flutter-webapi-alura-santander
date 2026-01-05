@@ -13,6 +13,10 @@ Aplicação de journal (diário) que demonstra integração com APIs REST, persi
 - **Integração com API REST via HTTP**
 - **Sistema de interceptors para logging de requisições e respostas**
 - **Comunicação com servidor JSON local**
+- **Tela de adição de journal entries**
+- **Navegação dinâmica com onGenerateRoute**
+- **Serialização e deserialização de objetos Journal**
+- **Feedback visual com SnackBar**
 - Uso de Google Fonts para tipografia customizada
 - Arquitetura organizada com models, helpers e screens
 
@@ -72,18 +76,26 @@ flutter run
 
 ```
 lib/
-├── main.dart           # Ponto de entrada da aplicação
-├── database/           # Camada de persistência
-├── helpers/            # Funções auxiliares
-├── models/             # Modelos de dados
-├── services/           # Serviços de API e interceptors
-│   ├── journal_service.dart      # Cliente HTTP para journal
-│   └── http_interceptors.dart    # Logging de requisições
-└── screens/            # Telas da aplicação
-    └── home_screen/
+├── main.dart                      # Ponto de entrada com rotas e tema
+├── config/
+│   ├── api_config.dart            # Configuração da URL base da API
+│   └── api_config.example.dart    # Exemplo de configuração
+├── database/                      # Camada de persistência
+├── helpers/                       # Funções auxiliares (weekday, phrases)
+├── models/
+│   └── journal.dart               # Modelo com serialização JSON
+├── services/                      # Serviços de API e interceptors
+│   ├── journal_service.dart       # Cliente HTTP para journal (GET/POST)
+│   └── http_interceptors.dart     # Logging de requisições
+├── screens/
+│   ├── add_journal_screen/        # Tela para criar journal entries
+│   │   └── add_journal_screen.dart
+│   └── home_screen/               # Tela principal com listagem
+│       └── widgets/
+│           └── journal_card.dart  # Card com navegação para adição
 
 server/
-└── db.json             # Banco de dados JSON para testes
+└── db.json                        # Banco de dados JSON com endpoints
 ```
 
 ## 🔧 Migração Realizada
@@ -104,6 +116,11 @@ Este projeto passou por uma migração completa para suportar as versões mais r
 - Implementação de HTTP interceptors para logging
 - Uso do pacote http_interceptor para monitoramento de requisições
 - Configuração de servidor JSON local para testes
+- **Serialização e deserialização JSON com dart:convert**
+- **Navegação com argumentos usando onGenerateRoute**
+- **Construtores nomeados (Journal.empty())**
+- **Geração de UUIDs para identificadores únicos**
+- **Feedback ao usuário com SnackBar e Navigator**
 - Gerenciamento de estado e navegação
 - Persistência de dados local
 - Boas práticas de arquitetura Flutter
