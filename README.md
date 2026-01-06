@@ -16,7 +16,12 @@ Aplicação de journal (diário) que demonstra integração com APIs REST, persi
 - **Tela de adição de journal entries**
 - **Navegação dinâmica com onGenerateRoute**
 - **Serialização e deserialização de objetos Journal**
+- **Deserialização de listas JSON com fromMap**
+- **Método getAll() para buscar todos os journals**
+- **Botão de refresh na AppBar para atualizar dados**
+- **Atualização automática após adicionar novo registro**
 - **Feedback visual com SnackBar**
+- **Helper WeekDay aprimorado com toString()**
 - Uso de Google Fonts para tipografia customizada
 - Arquitetura organizada com models, helpers e screens
 
@@ -82,10 +87,11 @@ lib/
 │   └── api_config.example.dart    # Exemplo de configuração
 ├── database/                      # Camada de persistência
 ├── helpers/                       # Funções auxiliares (weekday, phrases)
+│   └── weekday.dart               # Helper WeekDay com toString() para formatação
 ├── models/
-│   └── journal.dart               # Modelo com serialização JSON
+│   └── journal.dart               # Modelo com serialização/deserialização JSON
 ├── services/                      # Serviços de API e interceptors
-│   ├── journal_service.dart       # Cliente HTTP para journal (GET/POST)
+│   ├── journal_service.dart       # Cliente HTTP (GET/POST) com getAll()
 │   └── http_interceptors.dart     # Logging de requisições
 ├── screens/
 │   ├── add_journal_screen/        # Tela para criar journal entries
