@@ -21,6 +21,9 @@ Aplicação de journal (diário) que demonstra integração com APIs REST, persi
 - **Botão de refresh na AppBar para atualizar dados**
 - **Atualização automática após adicionar novo registro**
 - **Feedback visual com SnackBar**
+- **Diálogo de confirmação para ações críticas**
+- **Funcionalidade de remoção de journal entries com confirmação**
+- **Edição de journal entries existentes**
 - **Helper WeekDay aprimorado com toString()**
 - Uso de Google Fonts para tipografia customizada
 - Arquitetura organizada com models, helpers e screens
@@ -91,14 +94,16 @@ lib/
 ├── models/
 │   └── journal.dart               # Modelo com serialização/deserialização JSON
 ├── services/                      # Serviços de API e interceptors
-│   ├── journal_service.dart       # Cliente HTTP (GET/POST) com getAll()
+│   ├── journal_service.dart       # Cliente HTTP (GET/POST/PUT/DELETE) com getAll()
 │   └── http_interceptors.dart     # Logging de requisições
 ├── screens/
 │   ├── add_journal_screen/        # Tela para criar journal entries
 │   │   └── add_journal_screen.dart
+│   ├── common/                    # Componentes compartilhados
+│   │   └── confirmation_dialog.dart # Diálogo de confirmação customizado
 │   └── home_screen/               # Tela principal com listagem
 │       └── widgets/
-│           └── journal_card.dart  # Card com navegação para adição
+│           └── journal_card.dart  # Card com navegação e remoção
 
 server/
 └── db.json                        # Banco de dados JSON com endpoints
@@ -127,6 +132,9 @@ Este projeto passou por uma migração completa para suportar as versões mais r
 - **Construtores nomeados (Journal.empty())**
 - **Geração de UUIDs para identificadores únicos**
 - **Feedback ao usuário com SnackBar e Navigator**
+- **Operações CRUD completas (Create, Read, Update, Delete)**
+- **Criação de componentes reutilizáveis (confirmation_dialog)**
+- **Uso de Future e async/await para operações assíncronas**
 - Gerenciamento de estado e navegação
 - Persistência de dados local
 - Boas práticas de arquitetura Flutter
