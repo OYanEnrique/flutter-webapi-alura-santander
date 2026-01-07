@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_webapi_first_course/helpers/weekday.dart';
 import 'package:flutter_webapi_first_course/models/journal.dart';
+import 'package:flutter_webapi_first_course/screens/common/confirmation_dialog.dart';
+import 'package:flutter_webapi_first_course/services/journal_service.dart';
 import 'package:uuid/uuid.dart';
 
 class JournalCard extends StatelessWidget {
@@ -14,7 +16,10 @@ class JournalCard extends StatelessWidget {
   Widget build(BuildContext context) {
     if (journal != null) {
       return InkWell(
-        onTap: () {},
+        onTap: () 
+        {
+          callAddJournalScreen(context, journal: journal);
+        },
         child: Container(
           height: 115,
           margin: const EdgeInsets.all(8),
@@ -75,6 +80,10 @@ class JournalCard extends StatelessWidget {
                   ),
                 ),
               ),
+              IconButton(onPressed: (){
+                removeJournal(context);
+              }, icon: const Icon(Icons.delete))
+
             ],
           ),
         ),
@@ -96,15 +105,26 @@ class JournalCard extends StatelessWidget {
       );
     }
   }
-  callAddJournalScreen(BuildContext context) {
-    Navigator.pushNamed(
-      context, 'add-journal', 
-      arguments: Journal(
+  callAddJournalScreen(BuildContext context, {Journal? journal}) {
+
+    Journal innerJournal = Journal(
         id: const Uuid().v4(), 
         content: '', 
         createdAt: showedDate, 
         updatedAt: showedDate,
-      ),
+      );
+    Map<String, dynamic> map = {};
+    if (journal != null) {
+      innerJournal = journal;
+      map['is_editing'] = false;
+    }else{
+      map['is_editing'] = true;
+    }
+      map['journal'] = innerJournal;
+
+    Navigator.pushNamed(
+      context, 'add-journal', 
+      arguments: map,
     ).then((value){
       refreshFunction();
       if(value != null && value == true){
@@ -116,5 +136,29 @@ class JournalCard extends StatelessWidget {
       }
     });
     }
+  removeJournal(BuildContext context) {
+    JournalService service = JournalService();
+    if(journal != null){
+      showConfirmationDialog(context, content: "Deseja realmente remover este registro do dia ${WeekDay(journal!.createdAt)}?", 
+      affirmativeOption: "Remover",
+      ).then((value){
+        if(value != null){
+          if(value){
+            service.delete(journal!.id).then((value){
+              if(value){
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Removido com sucesso!"),
+          ),
+        );
+        refreshFunction();
+        }
+      });
+
+          }
+        }
+      });
+ 
+     }
+   }
   }
+
 
