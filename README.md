@@ -11,6 +11,8 @@ Aplicação de journal (diário) que demonstra integração com APIs REST, persi
 - Interface de journal com listagem de entradas
 - Integração com banco de dados local
 - **Integração com API REST via HTTP**
+- **Sistema de autenticação com json-server-auth**
+- **Proteção de endpoints com Bearer token**
 - **Sistema de interceptors para logging de requisições e respostas**
 - **Comunicação com servidor JSON local**
 - **Tela de adição de journal entries**
@@ -37,6 +39,8 @@ Aplicação de journal (diário) que demonstra integração com APIs REST, persi
 - **HTTP** ^1.6.0 - Cliente HTTP para requisições
 - **HTTP Interceptor** ^2.0.0 - Interceptação e logging de requisições
 - **Logger** ^1.1.0 - Sistema de logs estruturado
+- **json-server** 0.17.4 - Servidor REST fake para desenvolvimento
+- **json-server-auth** 2.1.0 - Sistema de autenticação para json-server
 - **Gradle 8.7** - Sistema de build Android
 - **Android Gradle Plugin 8.6.0** - Plugin Android
 - **Kotlin 2.1.0** - Linguagem para código nativo Android
@@ -70,15 +74,28 @@ cp lib/config/api_config.example.dart lib/config/api_config.dart
 # Instale as dependências
 flutter pub get
 
-# Inicie o servidor JSON (em outro terminal)
+# Configure o servidor com autenticação
 cd server
-npx json-server --watch db.json --host 0.0.0.0 --port 3000
 
-# Execute o aplicativo
+# Instale as dependências do servidor (primeira vez)
+npm install
+
+# Copie o arquivo de configuração do servidor
+cp server.config.example.js server.config.js
+
+# Edite server.config.js e configure seu IP local se necessário
+
+# Inicie o servidor com autenticação
+node server.js
+
+# Em outro terminal, execute o aplicativo
 flutter run
 ```
 
-> **⚠️ Importante:** O arquivo `lib/config/api_config.dart` contém configurações locais e não é versionado pelo git. Certifique-se de criá-lo a partir do arquivo de exemplo.
+> **⚠️ Importante:** 
+> - O arquivo `lib/config/api_config.dart` contém configurações locais e não é versionado
+> - O arquivo `server/server.config.js` contém seu IP local e não é versionado
+> - Certifique-se de criar ambos a partir dos arquivos de exemplo
 
 ## 📂 Estrutura do Projeto
 
@@ -106,7 +123,12 @@ lib/
 │           └── journal_card.dart  # Card com navegação e remoção
 
 server/
-└── db.json                        # Banco de dados JSON com endpoints
+├── db.json                        # Banco de dados JSON com endpoints
+├── server.js                      # Servidor customizado com autenticação
+├── server.config.js               # Configuração local (não versionado)
+├── server.config.example.js       # Exemplo de configuração
+├── routes.json                    # Regras de roteamento
+└── package.json                   # Dependências do servidor
 ```
 
 ## 🔧 Migração Realizada
@@ -124,6 +146,10 @@ Este projeto passou por uma migração completa para suportar as versões mais r
 ## 📚 Aprendizados
 
 - Integração de APIs REST em Flutter
+- **Implementação de autenticação com json-server-auth**
+- **Configuração de servidor Node.js customizado**
+- **Proteção de rotas e endpoints privados**
+- **Uso de middleware para autenticação**
 - Implementação de HTTP interceptors para logging
 - Uso do pacote http_interceptor para monitoramento de requisições
 - Configuração de servidor JSON local para testes
@@ -139,6 +165,7 @@ Este projeto passou por uma migração completa para suportar as versões mais r
 - Persistência de dados local
 - Boas práticas de arquitetura Flutter
 - Configuração e migração de projetos Android
+- **Segurança de informações sensíveis com .gitignore**
 
 ## 👨‍💻 Autor
 
