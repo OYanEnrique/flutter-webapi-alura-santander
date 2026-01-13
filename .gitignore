@@ -38,6 +38,11 @@ lib/generated_plugin_registrant.dart
 # API Configuration (contains sensitive data)
 lib/config/api_config.dart
 
+# Server configuration (contains IP address)
+server/server.config.js
+server/node_modules/
+server/package-lock.json
+
 # Symbolication related
 app.*.symbols
 
