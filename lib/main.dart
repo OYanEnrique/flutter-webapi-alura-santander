@@ -4,6 +4,7 @@ import 'package:flutter_webapi_first_course/screens/add_journal_screen/add_journ
 import 'package:flutter_webapi_first_course/services/journal_service.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'screens/home_screen/home_screen.dart';
+import 'screens/login-screen/login-screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -42,9 +43,10 @@ class MyApp extends StatelessWidget {
       ),
       darkTheme: ThemeData.dark(),
       themeMode: ThemeMode.light,
-      initialRoute: "home",
+      initialRoute: "login",
       routes: {
         "home": (context) => const HomeScreen(),
+        "login": (context) => LoginScreen(),
       },
       onGenerateRoute: (settings){
         if(settings.name == "add-journal"){
