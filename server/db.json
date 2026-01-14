@@ -1,14 +1,15 @@
 {
+  "users": [
+    {
+      "email": "enrique@example.com",
+      "password": "$2a$10$Nm0XAwCKbdk70HLfzkeNvePp/cc2wyTc4ELdxqgCfziHPSFxXZRPq",
+      "id": 1
+    }
+  ],
   "learnhttp": {
     "context": "Ola Mundo"
   },
   "journals": [
-    {
-      "id": "c4db3387-ed08-489f-92b3-18894dcdf813",
-      "content": "Yan Enrique",
-      "created_at": "2025-12-30 18:58:29.333163",
-      "updated_at": "2025-12-30 18:58:29.333163"
-    },
     {
       "id": "1f2f3b85-3457-4ba5-adc9-997813540e4b",
       "content": "Enrique",
