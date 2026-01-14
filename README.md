@@ -11,7 +11,10 @@ Aplicação de journal (diário) que demonstra integração com APIs REST, persi
 - Interface de journal com listagem de entradas
 - Integração com banco de dados local
 - **Integração com API REST via HTTP**
-- **Sistema de autenticação com json-server-auth**
+- **Sistema de autenticação completo com json-server-auth**
+- **Tela de login e registro de usuários**
+- **Persistência de tokens com SharedPreferences**
+- **Tratamento de exceções customizado (UserNotFoundException)**
 - **Proteção de endpoints com Bearer token**
 - **Sistema de interceptors para logging de requisições e respostas**
 - **Comunicação com servidor JSON local**
@@ -39,6 +42,7 @@ Aplicação de journal (diário) que demonstra integração com APIs REST, persi
 - **HTTP** ^1.6.0 - Cliente HTTP para requisições
 - **HTTP Interceptor** ^2.0.0 - Interceptação e logging de requisições
 - **Logger** ^1.1.0 - Sistema de logs estruturado
+- **SharedPreferences** ^2.0.15 - Armazenamento local de tokens e dados
 - **json-server** 0.17.4 - Servidor REST fake para desenvolvimento
 - **json-server-auth** 2.1.0 - Sistema de autenticação para json-server
 - **Gradle 8.7** - Sistema de build Android
@@ -111,11 +115,14 @@ lib/
 ├── models/
 │   └── journal.dart               # Modelo com serialização/deserialização JSON
 ├── services/                      # Serviços de API e interceptors
+│   ├── auth_service.dart          # Serviço de autenticação (login/register)
 │   ├── journal_service.dart       # Cliente HTTP (GET/POST/PUT/DELETE) com getAll()
 │   └── http_interceptors.dart     # Logging de requisições
 ├── screens/
 │   ├── add_journal_screen/        # Tela para criar journal entries
 │   │   └── add_journal_screen.dart
+│   ├── login-screen/              # Tela de login e registro
+│   │   └── login-screen.dart
 │   ├── common/                    # Componentes compartilhados
 │   │   └── confirmation_dialog.dart # Diálogo de confirmação customizado
 │   └── home_screen/               # Tela principal com listagem
@@ -146,7 +153,11 @@ Este projeto passou por uma migração completa para suportar as versões mais r
 ## 📚 Aprendizados
 
 - Integração de APIs REST em Flutter
-- **Implementação de autenticação com json-server-auth**
+- **Implementação completa de sistema de autenticação com json-server-auth**
+- **Criação de tela de login e registro de usuários**
+- **Persistência de tokens de autenticação com SharedPreferences**
+- **Tratamento de exceções customizadas (UserNotFoundException)**
+- **Diálogo de confirmação para registro de novos usuários**
 - **Configuração de servidor Node.js customizado**
 - **Proteção de rotas e endpoints privados**
 - **Uso de middleware para autenticação**
