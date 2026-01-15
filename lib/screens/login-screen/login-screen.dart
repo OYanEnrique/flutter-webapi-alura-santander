@@ -74,13 +74,23 @@ class LoginScreen extends StatelessWidget {
     String pass = _passController.text;
 
     try{
-      bool result = await service.login(email: email, password: pass);
+      await service.login(email: email, password: pass).then((resultLogin){
+        if(resultLogin){
+          Navigator.pushReplacementNamed(context, "home");
+        }
+
+      });
 
     }on UserNotFindException{
       showConfirmationDialog(context, content:"Deseja registrar um novo usuário com este e-mail $email e a senha inserida?", affirmativeOption: "Registrar",
       ).then((value){
         if(value != null && value){
-          service.register(email: email, password: pass);
+          service.register(email: email, password: pass).then((resultRegister){
+            if(resultRegister){
+              Navigator.pushReplacementNamed(context, "home");
+            }
+
+          });
         }
       });
 
