@@ -18,6 +18,8 @@ Aplicação de journal (diário) que demonstra integração com APIs REST, persi
 - **Proteção de endpoints com Bearer token**
 - **Sistema de interceptors para logging de requisições e respostas**
 - **Comunicação com servidor JSON local**
+- **Remoção completa de dependência do banco de dados SQLite**
+- **Migração de persistência local para API REST**
 - **Tela de adição de journal entries**
 - **Navegação dinâmica com onGenerateRoute**
 - **Serialização e deserialização de objetos Journal**
@@ -39,7 +41,7 @@ Aplicação de journal (diário) que demonstra integração com APIs REST, persi
 - **Dart** - Linguagem de programação
 - **Google Fonts** ^6.2.1 - Tipografia
 - **UUID** ^3.0.6 - Geração de identificadores únicos
-- **HTTP** ^1.6.0 - Cliente HTTP para requisições
+- **HTTP** ^1.6.0 - Cliente HTTP para requisições REST
 - **HTTP Interceptor** ^2.0.0 - Interceptação e logging de requisições
 - **Logger** ^1.1.0 - Sistema de logs estruturado
 - **SharedPreferences** ^2.0.15 - Armazenamento local de tokens e dados
@@ -172,6 +174,8 @@ Este projeto passou por uma migração completa para suportar as versões mais r
 - **Operações CRUD completas (Create, Read, Update, Delete)**
 - **Criação de componentes reutilizáveis (confirmation_dialog)**
 - **Uso de Future e async/await para operações assíncronas**
+- **Correção de erros de sintaxe (bool result no login)**
+- **Correção de inicialização no construtor Journal.empty**
 - Gerenciamento de estado e navegação
 - Persistência de dados local
 - Boas práticas de arquitetura Flutter
