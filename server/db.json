@@ -4,6 +4,21 @@
       "email": "enrique@example.com",
       "password": "$2a$10$Nm0XAwCKbdk70HLfzkeNvePp/cc2wyTc4ELdxqgCfziHPSFxXZRPq",
       "id": 1
+    },
+    {
+      "email": "yan123@example.com",
+      "password": "$2a$10$CuGki.WK8c4C1/KowfJMVOuFP8j6Lq/TQHH0xESWbyIT7M/7PCHpq",
+      "id": 2
+    },
+    {
+      "email": "enriquex@example.com",
+      "password": "$2a$10$0KOXTjAkxMT9lAUzVxwcC.A6wJDtXN/RKJWJcC7BCLUpndygf3/Se",
+      "id": 3
+    },
+    {
+      "email": "yanteste@example.com",
+      "password": "$2a$10$f72gmY6IuU8Q5W6QQV9wTu61IRdqrktWpMZGN.bt7V8rG/MSVvLMO",
+      "id": 4
     }
   ],
   "learnhttp": {
@@ -14,7 +29,15 @@
       "id": "1f2f3b85-3457-4ba5-adc9-997813540e4b",
       "content": "Enrique",
       "created_at": "2025-12-27 18:58:29.333163",
-      "updated_at": "2025-12-27 18:58:29.333163"
+      "updated_at": "2025-12-27 18:58:29.333163",
+      "userId": 1
+    },
+    {
+      "id": "4693af10-f7ef-4b86-a726-a62e97207af2",
+      "content": "yan2",
+      "created_at": "2026-01-09 18:36:04.615899",
+      "updated_at": "2026-01-09 18:36:04.615899",
+      "userId": 4
     }
   ]
 }
