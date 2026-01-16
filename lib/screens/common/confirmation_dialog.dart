@@ -28,3 +28,21 @@ Future<dynamic> showConfirmationDialog(BuildContext context, {
   );
  
 }
+
+Future<dynamic> showExceptionDialog(BuildContext context, {
+  String title = "Erro!",
+  required String content,
+}) {
+  return showDialog(context: context, builder: (context){
+    return AlertDialog(
+      title: Text(title),
+      content: Text(content),
+      actions: [
+        TextButton(onPressed: (){
+          Navigator.pop(context);
+        }, child: const Text("OK")),
+      ],
+    );
+  },
+  );
+}

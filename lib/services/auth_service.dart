@@ -1,16 +1,13 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:flutter_webapi_first_course/config/api_config.dart';
-import 'package:flutter_webapi_first_course/services/http_interceptors.dart';
+import 'package:flutter_webapi_first_course/services/webclient.dart';
 import 'package:http/http.dart' as http;
-import 'package:http_interceptor/http/intercepted_client.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService{
-    static String url = ApiConfig.baseUrl;
-
-    http.Client client = InterceptedClient.build(interceptors: [LoggingInterceptor()]);
+    String url = WebClient.url;
+    http.Client client = WebClient().client;
 
     Future<bool> login({required String email, required String password}) async {
       http.Response response = await client.post(
@@ -65,8 +62,6 @@ class AuthService{
       prefs.setString("email", email);
       prefs.setInt("id", id);
 
-      String? tokenSalvo = prefs.getString("accessToken");
-      print("Token salvo: $tokenSalvo");
 
 
     }

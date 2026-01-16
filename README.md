@@ -14,7 +14,7 @@ Aplicação de journal (diário) que demonstra integração com APIs REST, persi
 - **Sistema de autenticação completo com json-server-auth**
 - **Tela de login e registro de usuários**
 - **Persistência de tokens com SharedPreferences**
-- **Tratamento de exceções customizado (UserNotFoundException)**
+- **Tratamento de exceções customizado (UserNotFoundException, TokenNotValidException, HttpException)**
 - **Proteção de endpoints com Bearer token**
 - **Sistema de interceptors para logging de requisições e respostas**
 - **Comunicação com servidor JSON local**
@@ -29,8 +29,14 @@ Aplicação de journal (diário) que demonstra integração com APIs REST, persi
 - **Atualização automática após adicionar novo registro**
 - **Feedback visual com SnackBar**
 - **Diálogo de confirmação para ações críticas**
+- **Diálogo de exceção (showExceptionDialog) para exibir erros ao usuário**
 - **Funcionalidade de remoção de journal entries com confirmação**
 - **Edição de journal entries existentes**
+- **Tratamento robusto de erros com múltiplos catchError**
+- **Logout automático quando token expira**
+- **Helper de logout reutilizável**
+- **Classe WebClient centralizada para requisições HTTP**
+- **Timeout de 15 segundos para requisições HTTP**
 - **Helper WeekDay aprimorado com toString()**
 - Uso de Google Fonts para tipografia customizada
 - Arquitetura organizada com models, helpers e screens
@@ -112,20 +118,22 @@ lib/
 │   ├── api_config.dart            # Configuração da URL base da API
 │   └── api_config.example.dart    # Exemplo de configuração
 ├── database/                      # Camada de persistência
-├── helpers/                       # Funções auxiliares (weekday, phrases)
+├── helpers/                       # Funções auxiliares (weekday, phrases, logout)
+│   ├── logout.dart                # Helper para logout reutilizável
 │   └── weekday.dart               # Helper WeekDay com toString() para formatação
 ├── models/
 │   └── journal.dart               # Modelo com serialização/deserialização JSON
 ├── services/                      # Serviços de API e interceptors
 │   ├── auth_service.dart          # Serviço de autenticação (login/register)
 │   ├── journal_service.dart       # Cliente HTTP (GET/POST/PUT/DELETE) com getAll()
+│   ├── webclient.dart             # Cliente HTTP centralizado com interceptors e timeout
 │   └── http_interceptors.dart     # Logging de requisições
 ├── screens/
 │   ├── add_journal_screen/        # Tela para criar journal entries
 │   │   └── add_journal_screen.dart
 │   ├── login-screen/              # Tela de login e registro
 │   │   └── login-screen.dart
-│   ├── common/                    # Componentes compartilhados
+│   ├── common/                    # Components de confirmação e exceção reutilizáveis
 │   │   └── confirmation_dialog.dart # Diálogo de confirmação customizado
 │   └── home_screen/               # Tela principal com listagem
 │       └── widgets/
@@ -157,17 +165,27 @@ Este projeto passou por uma migração completa para suportar as versões mais r
 - Integração de APIs REST em Flutter
 - **Implementação completa de sistema de autenticação com json-server-auth**
 - **Criação de tela de login e registro de usuários**
-- **Persistência de tokens de autenticação com SharedPreferences**
-- **Tratamento de exceções customizadas (UserNotFoundException)**
+- **Persistência de tokens de autenticação com SharedPreferenc, TokenNotValidException, HttpException)**
 - **Diálogo de confirmação para registro de novos usuários**
+- **Diálogo de exceção para exibição de erros ao usuário**
 - **Configuração de servidor Node.js customizado**
 - **Proteção de rotas e endpoints privados**
+- **Uso de middleware para autenticação**
+- **Logout automático ao detectar token expirado**
+- **Helper de logout reutilizável em todo o aplicativo**
+- **Classe WebClient centralizada para configuração de HTTP**
+- **Timeout configurável para requisições HTTP (15 segundos)dos**
 - **Uso de middleware para autenticação**
 - Implementação de HTTP interceptors para logging
 - Uso do pacote http_interceptor para monitoramento de requisições
 - Configuração de servidor JSON local para testes
-- **Serialização e deserialização JSON com dart:convert**
-- **Navegação com argumentos usando onGenerateRoute**
+- **Serialização e deserialização JSON com dart:convert**, exception_dialog)**
+- **Uso de Future e async/await para operações assíncronas**
+- **Tratamento robusto de erros com múltiplos catchError encadeados**
+- **Verificação de token expirado em todas as operações de API**
+- **Centralização de lógica de logout**
+- **Refatoração de código duplicado para helpers reutilizáveis**
+- **Timeout de requisições para melhor experiência do usuário
 - **Construtores nomeados (Journal.empty())**
 - **Geração de UUIDs para identificadores únicos**
 - **Feedback ao usuário com SnackBar e Navigator**
